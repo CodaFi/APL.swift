@@ -12,6 +12,7 @@
 		84EA385B197472F50014CFF7 /* APL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA385A197472F50014CFF7 /* APL.swift */; };
 		84EA385D197473640014CFF7 /* ArithmeticSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA385C197473640014CFF7 /* ArithmeticSpec.swift */; };
 		84EA385F1974841B0014CFF7 /* BooleanArithmeticSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA385E1974841B0014CFF7 /* BooleanArithmeticSpec.swift */; };
+		84EA38611974945B0014CFF7 /* ArraySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA38601974945B0014CFF7 /* ArraySpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		84EA385A197472F50014CFF7 /* APL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APL.swift; sourceTree = "<group>"; };
 		84EA385C197473640014CFF7 /* ArithmeticSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArithmeticSpec.swift; sourceTree = "<group>"; };
 		84EA385E1974841B0014CFF7 /* BooleanArithmeticSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooleanArithmeticSpec.swift; sourceTree = "<group>"; };
+		84EA38601974945B0014CFF7 /* ArraySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraySpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				84EA385C197473640014CFF7 /* ArithmeticSpec.swift */,
 				84EA385E1974841B0014CFF7 /* BooleanArithmeticSpec.swift */,
+				84EA38601974945B0014CFF7 /* ArraySpec.swift */,
 				84EA384E197472C90014CFF7 /* Supporting Files */,
 			);
 			path = APLTests;
@@ -226,6 +229,7 @@
 			files = (
 				84EA385D197473640014CFF7 /* ArithmeticSpec.swift in Sources */,
 				84EA385F1974841B0014CFF7 /* BooleanArithmeticSpec.swift in Sources */,
+				84EA38611974945B0014CFF7 /* ArraySpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

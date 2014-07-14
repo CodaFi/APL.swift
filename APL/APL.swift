@@ -166,7 +166,7 @@ operator infix ∨ { associativity right }
 /// Nor | Logical NOR
 operator infix ⍱ { associativity right }
 
-/// NAnd | Logical NAND
+/// Nand | Logical NAND
 operator infix ⍲ { associativity right }
 
 @infix func ∧(a : UInt, w : UInt) -> UInt {
@@ -319,7 +319,7 @@ operator infix ! { associativity right }
 //}
 //
 //@infix func !(a : Int, w : Int) -> Int {
-//    return Double(!w) ÷ Double(!a) × Double((!w) - a)
+//    return !w ÷ !a × (!w - a)
 //}
 
 
@@ -390,3 +390,44 @@ operator infix ⌿ {}
 @prefix func ↑<T : Hashable>(w : [T]) -> [T] {
     return (≠w) ⌿ w
 }
+
+//------------------//
+
+
+operator prefix ⍳ {}
+operator infix ⍳ { associativity right }
+
+@prefix func ⍳(w : Int) -> [Int] {
+    return Array<Int>((1...w))
+}
+
+//@infix func ⍳<T>(a : [T], w : T) -> [] {
+//    return +/∧\a∘.≠w
+//}
+
+//operator infix ⍸ { associativity right }
+//
+//@infix func ⍸<T>(a : [T], w : [T]) {
+//
+//}
+
+operator prefix ⍴ {}
+operator infix ⍴ {}
+
+@prefix func ⍴<T>(w : [T]) -> [Int] {
+    return [w.count]
+}
+
+@prefix func ⍴<T>(w : [[T]]) -> [Int] {
+    var ar = ⍴(w[0])
+    ar.append(w.count)
+    return ar
+}
+
+@prefix func ⍴<T>(w : [[[T]]]) -> [Int] {
+    var ar = ⍴(w[0])
+    ar.append(w.count)
+    return ar
+}
+
+//...
