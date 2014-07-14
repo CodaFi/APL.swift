@@ -12,7 +12,8 @@ import APL
 class ArithmeticSpec : XCTestCase {
 // It's rather ambiguous as to what Swift does with unary plus.  All indications point to it being
 // absolute value, but even that fails.  C defines it as a way to promote operands, but that makes
-// no sense here given that it would be a pretty clear violation of type safety/obviates @conversion
+// no sense here given that it would be a pretty clear violation of type safety/obviates @conversion.
+// It seems like a NOP for now, which is a shame.
 //
 //    func testMate() {
 //        let x = 5.0

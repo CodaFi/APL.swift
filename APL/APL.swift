@@ -11,19 +11,6 @@ import Foundation
 //operator prefix + {} Defined by the STL
 //operator prefix - {} Defined by the STL
 
-/// Lift equality over arrays.
-@infix func ==<T : Equatable>(lhs: Array<T>, rhs: Array<T>) -> Bool {
-    if lhs.count == rhs.count {
-        for x in (0..<lhs.count) {
-            if lhs[x] != rhs[x] {
-                return false
-            }
-        }
-        return true
-    }
-    return false
-}
-
 /// Minus
 operator prefix - {}
 
@@ -127,8 +114,25 @@ operator infix ≠ { associativity right }
     }
 }
 
-//operator prefix ≡ {}
-//operator infix ≡ { associativity right }
+/// Match | Returns whether the arguments match in shape, size, and boxing structure
+operator infix ≡ { associativity right }
+
+@infix func ≡<T : Equatable>(a : T, w : T) -> Bool {
+    return a == w 
+}
+
+/// Lift equality over arrays.
+@infix func ≡<T : Equatable>(a : Array<T>, w : Array<T>) -> Bool {
+    if a.count == w.count {
+        for x in (0..<a.count) {
+            if a[x] != w[x] {
+                return false
+            }
+        }
+        return true
+    }
+    return false
+}
 
 //------------------//
 
