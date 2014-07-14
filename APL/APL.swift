@@ -57,7 +57,7 @@ operator infix ÷ { associativity right }
 operator prefix ^ {}
 
 /// Power | Returns ⍺ ^ ⍵
-//operator infix ^ { associativity right }
+//operator infix ^ { associativity right } Oddly, defined by the Swift STL.  NOTE: Change name
 
 /// Log | Returns the natural log of ⍵
 operator prefix ⍟ {}
@@ -122,7 +122,7 @@ operator infix ≡ { associativity right }
 }
 
 /// Lift equality over arrays.
-@infix func ≡<T : Equatable>(a : Array<T>, w : Array<T>) -> Bool {
+@infix func ≡<T : Equatable>(a : [T], w : [T]) -> Bool {
     if a.count == w.count {
         for x in (0..<a.count) {
             if a[x] != w[x] {
@@ -137,12 +137,21 @@ operator infix ≡ { associativity right }
 //------------------//
 
 /// Not | Negates only boolean arguments
-operator prefix ~ {}
-//operator infix ~ { associativity right }
+//operator prefix ~ {}
 
-@prefix func ~(x : Bool) -> Bool {
-    return !x
+/// Less | Returns an array whose major cells are the major cells of ⍺ less the major cells of ⍵.
+operator infix ~ { associativity right }
+
+@infix func ~<T : Hashable>(a : [T], w : [T]) -> [T] {
+    var dict = Dictionary<T, Void>()
+    for x in w {
+        dict.updateValue(Void(), forKey: x)
+    }
+    return a.filter() {
+       return dict.indexForKey($0) == nil
+    }
 }
+
 
 //------------------//
 
@@ -185,11 +194,11 @@ operator infix ⍲ { associativity right }
 }
 
 @infix func ⍱(a : Bool, w : Bool) -> Bool {
-    return (~a ∨ w)
+    return ~(a ∨ w)
 }
 
 @infix func ⍲(a : Bool, w : Bool) -> Bool {
-    return (~a ∧ w)
+    return ~(a ∧ w)
 }
 
 //------------------//
