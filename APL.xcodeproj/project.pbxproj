@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		84A8549C19804E82000352BA /* Complex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8549B19804E82000352BA /* Complex.swift */; };
+		84C36F7419806B5600F58523 /* Adverbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C36F7319806B5600F58523 /* Adverbs.swift */; };
 		84EA3844197472C90014CFF7 /* APL.h in Headers */ = {isa = PBXBuildFile; fileRef = 84EA3843197472C90014CFF7 /* APL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84EA384A197472C90014CFF7 /* APL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EA383E197472C90014CFF7 /* APL.framework */; };
 		84EA385B197472F50014CFF7 /* APL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA385A197472F50014CFF7 /* APL.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		84A8549B19804E82000352BA /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
+		84C36F7319806B5600F58523 /* Adverbs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adverbs.swift; sourceTree = "<group>"; };
 		84EA383E197472C90014CFF7 /* APL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EA3842197472C90014CFF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84EA3843197472C90014CFF7 /* APL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APL.h; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				84EA3843197472C90014CFF7 /* APL.h */,
 				84EA385A197472F50014CFF7 /* APL.swift */,
+				84C36F7319806B5600F58523 /* Adverbs.swift */,
 				84A8549B19804E82000352BA /* Complex.swift */,
 				84EA3841197472C90014CFF7 /* Supporting Files */,
 			);
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A8549C19804E82000352BA /* Complex.swift in Sources */,
+				84C36F7419806B5600F58523 /* Adverbs.swift in Sources */,
 				84EA385B197472F50014CFF7 /* APL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
