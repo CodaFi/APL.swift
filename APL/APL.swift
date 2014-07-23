@@ -580,3 +580,14 @@ operator infix ⍴ {}
 //
 //operator prefix ⍕ {}
 //operator infix ⍕ { associativity right }
+
+operator prefix ⍪ {}
+
+/// Over | Concatenates the major cells of a and w
+operator infix ⍪ {}
+
+@infix public func ⍪<T>(a : [T], w : [T]) -> [T] {
+    var arr = a
+    arr += w
+    return arr
+}
