@@ -30,6 +30,10 @@ operator infix ÷ { associativity right }
     return fabs(w)
 }
 
+@infix func +(a : Int, w : [Int]) -> [Int] {
+    return w.map({$0 + a})
+}
+
 @infix func +(a : Double, w : [Double]) -> [Double] {
     return w.map({$0 + a})
 }
@@ -49,7 +53,6 @@ operator infix ÷ { associativity right }
 @infix func ×(a : Double, w : Double) -> Double {
     return exp(⍟a - ⍟(1.0 / w))
 }
-
 
 //------------------//
 
@@ -380,11 +383,20 @@ operator infix ⍉ {}
 
 //------------------//
 
+/// Size | Yields the size or "absolute value" for a real or complex argument.
 operator prefix | {}
+
+/// Residue | TODO: Relax definition from fmod to "tolerant" residue
+/// ⍺|⍵ ←→ ⍵-⍺×⌊s   if (⍺≠0)^(⌈s)≠⌊s←⍵÷⍺+⍺=0
+///     ←→ ⍵×⍺=0    otherwise
 operator infix | { associativity right }
 
 @prefix func |(w : Double) -> Double {
     return fabs(w)
+}
+
+@prefix func |(w : Complex) -> Double {
+    return hypot(w.real, w.imag)
 }
 
 @infix func |(a : Double, w : Double) -> Double {
@@ -392,17 +404,32 @@ operator infix | { associativity right }
 }
 
 
+/// Factorial | Returns the product of the list of integers from 1 to w
+/// TODO: Extend to reals and complex numbers with gamma:
+///     Gamma(x) = (x - 1)! | x ∊ N
+///     Gamma(t) = Integral(0, Inf, (x**(t-1))× **-x, dx) | otherwise
 operator prefix ! {}
+
+/// Out of | Yields the number of ways of selecting a things from w.  Useful for producing
+/// binomial coefficients.
 operator infix ! { associativity right }
 
-//@prefix func !(w : Int) -> Int {
-//    return ×/ (1 + (⍳ w))
-//}
-//
-//@infix func !(a : Int, w : Int) -> Int {
-//    return !w ÷ !a × (!w - a)
-//}
+@prefix func !(w : Int) -> Double {
+    var acc : Int = 1
+    for i in (1 + (⍳w)) {
+        acc *= i
+    }
+    return Double(acc)
+}
 
+
+@infix func !(a : Int, w : Int) -> Double {
+    return !w ÷ !a × (!w - Double(a))
+}
+
+@infix func !(a : [Int], w : Int) -> [Double] {
+    return a.map({$0 ! w})
+}
 
 //------------------//
 
@@ -479,7 +506,7 @@ operator prefix ⍳ {}
 operator infix ⍳ { associativity right }
 
 @prefix func ⍳(w : Int) -> [Int] {
-    return Array<Int>((1...w))
+    return Array<Int>((0..<w))
 }
 
 //@infix func ⍳<T>(a : [T], w : T) -> [] {

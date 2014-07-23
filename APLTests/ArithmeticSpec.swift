@@ -73,8 +73,8 @@ class ArithmeticSpec : XCTestCase {
         let x = 5.0
         let y = -5.0
         
-        XCTAssertEqual(^x, exp(x), "")
-        XCTAssertEqual(^y, exp(y), "")
+        XCTAssertEqual(**x, exp(x), "")
+        XCTAssertEqual(**y, exp(y), "")
     }
     
     func testMonadLog() {
@@ -87,13 +87,22 @@ class ArithmeticSpec : XCTestCase {
         let x = 5.0
         let y = 5.0
         
-        XCTAssertEqual(x ^ y, exp(y) × log(x), "")
+        XCTAssertEqual(x ** y, exp(y) × log(x), "")
     }
     
     func testDyadLog() {
         let x = 5.0
         let b = 5.0
 
-        XCTAssertEqual(x ⍟ b, exp(b) ^ log(x), "")
+        XCTAssertEqual(x ⍟ b, exp(b) ** log(x), "")
+    }
+    
+    func testMonadFactorial() {
+        var acc : Double = 1.0
+        for i in [1.0, 2.0, 3.0, 4.0] {
+            acc *= i
+        }
+        
+        XCTAssertEqual(!4, acc, "")
     }
 }

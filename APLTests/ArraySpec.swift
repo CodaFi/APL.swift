@@ -17,9 +17,9 @@ class ArraySpec : XCTestCase {
         let y = ⍳8
         let z = ⍳1
 
-        XCTAssertTrue(x ≡ [1, 2, 3, 4, 5], "")
-        XCTAssertTrue(y ≡ [1, 2, 3, 4, 5, 6, 7, 8], "")
-        XCTAssertTrue(z ≡ [1], "")
+        XCTAssertTrue(x ≡ [0, 1, 2, 3, 4], "")
+        XCTAssertTrue(y ≡ [0, 1, 2, 3, 4, 5, 6, 7], "")
+        XCTAssertTrue(z ≡ [0], "")
     }
     
     func testDimensions() {
