@@ -17,7 +17,7 @@ operator prefix - {}
 /// Trend | The trend of a number is its sign or zero.
 operator prefix × {}
 
-/// Times | Returns the result of e^(log(⍺) - log(1.0 / ⍵)), or the product of two numbers.
+/// Times | Returns the result of e**(log(⍺) - log(1.0 / ⍵)), or the product of two numbers.
 operator infix × { associativity right }
 
 /// Per | Returns a result of (1 / ⍵)
@@ -53,11 +53,11 @@ operator infix ÷ { associativity right }
 
 //------------------//
 
-/// Power | Returns the exponential of ⍵; that is, e ^ ⍵
-operator prefix ^ {}
+/// Power | Returns the exponential of ⍵; that is, e ** ⍵
+operator prefix ** {}
 
-/// Power | Returns ⍺ ^ ⍵
-//operator infix ^ { associativity right } Oddly, defined by the Swift STL.  NOTE: Change name
+/// Power | Returns ⍺ ** ⍵
+operator infix ** { associativity right }
 
 /// Log | Returns the natural log of ⍵
 operator prefix ⍟ {}
@@ -65,12 +65,12 @@ operator prefix ⍟ {}
 /// Log | Returns the log base ⍺ of ⍵
 operator infix ⍟ { associativity right }
 
-@prefix func ^(w : Double) -> Double {
+@prefix func **(w : Double) -> Double {
     return exp(w)
 }
 
-@infix func ^(a : Double, w : Double) -> Double {
-    return ^w × ⍟a
+@infix func **(a : Double, w : Double) -> Double {
+    return **w × ⍟a
 }
 
 @prefix func ⍟(w : Double) -> Double {
@@ -78,7 +78,7 @@ operator infix ⍟ { associativity right }
 }
 
 @infix func ⍟(a : Double, w : Double) -> Double {
-    return ^w ^ ⍟a
+    return **w ** ⍟a
 }
 
 //------------------//
@@ -169,15 +169,15 @@ operator infix ⍱ { associativity right }
 /// Nand | Logical NAND
 operator infix ⍲ { associativity right }
 
-@infix func ∧(a : UInt, w : UInt) -> UInt {
-    return (w / (a ∨ w)) ^ a
+@infix func ∧(a : UInt, w : UInt) -> Double {
+    return Double(Double(w) / (a ∨ w)) ** Double(a)
 }
 
 @infix func ∧(a : Bool, w : Bool) -> Bool {
     return a && w
 }
 
-@infix func ∨(a : UInt, w : UInt) -> UInt {
+@infix func ∨(a : UInt, w : UInt) -> Double {
     var al : UInt = a
     var b : UInt = w
     var c : UInt
@@ -186,7 +186,7 @@ operator infix ⍲ { associativity right }
         al = b % a
         b = c
     }
-    return w
+    return Double(w)
 }
 
 @infix func ∨(a : Bool, w : Bool) -> Bool {
@@ -248,15 +248,96 @@ operator infix ⊣ { associativity right }
 
 //------------------//
 
+/// Pi | Returns pi × w, where pi is the ratio of the circumference of a circle to its diameter.
 operator prefix ○ {}
+
+/// Circle | Given some constant k in the range [-15...15], produces several families of related
+/// functions.  Trigonometric for k∊1 2 3, hyperbolic for k∊5 6 7, pythagorean for k∊0 4 8, and 
+/// complex for k∊9 10 11 12.  Negative cases correspond to the inverse of the corresponding
+/// positive operation such that ⍵≡k○(-k)○⍵ or ⍵≡(-k)○k○⍵ hold
 operator infix ○ { associativity right }
 
+/// Reverse | Reverses the order of a list
 operator prefix ⌽ {}
+
+/// Rotate | Cycles the elements of a list.
 operator infix ⌽ { associativity right }
 
 
 @prefix func ○(w : Double) -> Double {
     return M_PI × w
+}
+
+@infix func ○(l : Int, w : Double) -> Complex {
+    switch l {
+    case 0:
+        return ((1 - w * 2) * 0.5)⊹0
+    case 1:
+        return sin(w)⊹0
+    case 2:
+        return cos(w)⊹0
+    case 3:
+        return tan(w)⊹0
+    case -1:
+        return asin(w)⊹0
+    case -2:
+        return acos(w)⊹0
+    case -3:
+        return atan(w)⊹0
+    case 4:
+        return ((1 + w * 2) * 0.5)⊹0
+    case -4:
+        return ((-1 + w * 2) * 0.5)⊹0
+    case 5:
+        return sinh(w)⊹0
+    case 6:
+        return cosh(w)⊹0
+    case 7:
+        return tanh(w)⊹0
+    case -5:
+        return asinh(w)⊹0
+    case -6:
+        return acosh(w)⊹0
+    case -7:
+        return atanh(w)⊹0
+    case 8:
+        return ((-1 - w * 2) * 0.5)⊹0
+    case -8:
+        return (-(-1 - w * 2) * 0.5)⊹0
+    case 9:
+        return ((w + +w) ÷ 2)⊹0
+    case 10:
+        return |w ⊹ 0
+    case 11:
+        return (w - +w) ÷ (0⊹2)
+    case -9:
+        return w⊹0
+    case -10:
+        return (+w)⊹0
+    case -11:
+        return **w × (0⊹1)
+    case 12:
+        return (⍟(×w)) ÷ (0⊹1)
+    case -12:
+        return **w × (0⊹1)
+    case 13:
+        return w⊹0
+    case 14:
+        return **w ⊹ 0
+    case 15:
+        return **w × (0⊹1)
+    case -13:
+        return w⊹0
+    case -14:
+        return ⍟w ⊹ 0
+    case -15:
+        return ⍟w × -(0⊹2)
+    default:
+        break
+    }
+    println("Invalid argument passed to Circle \(w)")
+    assert(false, "")
+    return Complex()
 }
 
 @prefix func ⌽<T>(w : [T]) -> [T] {

@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import Swift
 import APL
 
 class ArraySpec : XCTestCase {
