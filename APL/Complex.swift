@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Complex {
+public struct Complex {
     let real : Double = 0.0
     let imag : Double = 0.0
     
@@ -21,42 +21,42 @@ struct Complex {
 
 operator infix ⊹ {}
 
-@infix func ⊹(a : Double, w : Double) -> Complex {
+@infix public func ⊹(a : Double, w : Double) -> Complex {
     return Complex(real: a, imag: w)
 }
 
-@infix func + (a : Complex, w : Complex) -> Complex {
+@infix public func + (a : Complex, w : Complex) -> Complex {
     return Complex(real: a.real + w.real, imag: a.imag + w.imag)
 }
 
-@prefix func - (w : Complex) -> Complex {
+@prefix public func - (w : Complex) -> Complex {
     return Complex(real: -w.real, imag: -w.imag)
 }
 
-@infix func - (a : Complex, w : Complex) -> Complex {
+@infix public func - (a : Complex, w : Complex) -> Complex {
     return Complex(real: a.real - w.real, imag: a.imag - w.imag)
 }
 
-@infix func × (a : Complex, w : Complex) -> Complex {
+@infix public func × (a : Complex, w : Complex) -> Complex {
     return Complex(real: (a.real × w.real) - (a.imag × w.imag), imag: (a.real × w.imag) + (a.imag × w.real))
 }
 
-@infix func ÷ (a : Complex, w : Complex) -> Complex {
+@infix public func ÷ (a : Complex, w : Complex) -> Complex {
     return a × w.inverse
 }
 
-@infix func + (a : Double, w : Complex) -> Complex {
+@infix public func + (a : Double, w : Complex) -> Complex {
     return Complex(real: a + w.real, imag: w.imag)
 }
 
-@infix func - (a : Double, w : Complex) -> Complex {
+@infix public func - (a : Double, w : Complex) -> Complex {
     return Complex(real: a - w.real, imag: w.imag)
 }
 
-@infix func × (a : Double, w : Complex) -> Complex {
+@infix public func × (a : Double, w : Complex) -> Complex {
     return Complex(real: a × w.real, imag: a × w.imag)
 }
 
-@infix func ÷ (a : Double, w : Complex) -> Complex {
+@infix public func ÷ (a : Double, w : Complex) -> Complex {
     return a × w.inverse
 }

@@ -34,5 +34,17 @@ class ArraySpec : XCTestCase {
         XCTAssertTrue(⍴y ≡ [4, 2], "")
         XCTAssertTrue(⍴z ≡ [4, 2, 2], "")
     }
+    
+    func testDyadRoll() {
+        let x = 6¿40
+        
+        XCTAssertTrue(x.count == 6, "")
+        
+        var y = Dictionary<Double, Void>()
+        for i in x {
+            y.updateValue(Void(), forKey: i)
+        }
+        XCTAssertTrue(x.count == y.count, "")
+    }
 }
 
