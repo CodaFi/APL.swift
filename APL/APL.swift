@@ -150,7 +150,7 @@ prefix public func **(w : Double) -> Double {
 }
 
 public func **(a : Double, w : Double) -> Double {
-	return **w × ⍟a
+	return **(w × ⍟a)
 }
 
 prefix public func ⍟(w : Double) -> Double {
@@ -183,70 +183,70 @@ prefix public func ○(w : Double) -> Double {
 
 public func ○(l : Int, w : Double) -> Complex {
 	switch l {
-	case 0:
-		return ((1 - w * 2) * 0.5)⊹0
-	case 1:
-		return sin(w)⊹0
-	case 2:
-		return cos(w)⊹0
-	case 3:
-		return tan(w)⊹0
-	case -1:
-		return asin(w)⊹0
-	case -2:
-		return acos(w)⊹0
-	case -3:
-		return atan(w)⊹0
-	case 4:
-		return ((1 + w * 2) * 0.5)⊹0
-	case -4:
-		return ((-1 + w * 2) * 0.5)⊹0
-	case 5:
-		return sinh(w)⊹0
-	case 6:
-		return cosh(w)⊹0
-	case 7:
-		return tanh(w)⊹0
-	case -5:
-		return asinh(w)⊹0
-	case -6:
-		return acosh(w)⊹0
-	case -7:
-		return atanh(w)⊹0
-	case 8:
-		return ((-1 - w * 2) * 0.5)⊹0
-	case -8:
-		return (-(-1 - w * 2) * 0.5)⊹0
-	case 9:
-		return ((w + +w) ÷ 2)⊹0
-	case 10:
-		return |w ⊹ 0
-	case 11:
-		return (w - +w) ÷ (0⊹2)
-	case -9:
-		return w⊹0
-	case -10:
-		return (+w)⊹0
-	case -11:
-		return **w × (0⊹1)
-	case 12:
-		return (⍟(×w)) ÷ (0⊹1)
-	case -12:
-		return **w × (0⊹1)
-	case 13:
-		return w⊹0
-	case 14:
-		return **w ⊹ 0
-	case 15:
-		return **w × (0⊹1)
-	case -13:
-		return w⊹0
-	case -14:
-		return ⍟w ⊹ 0
-	case -15:
-		return ⍟w × -(0⊹2)
-	default:
-		break
+		case 0:
+			return ((1 - w * 2) * 0.5)⊹0
+		case 1:
+			return sin(w)⊹0
+		case 2:
+			return cos(w)⊹0
+		case 3:
+			return tan(w)⊹0
+		case -1:
+			return asin(w)⊹0
+		case -2:
+			return acos(w)⊹0
+		case -3:
+			return atan(w)⊹0
+		case 4:
+			return ((1 + w * 2) * 0.5)⊹0
+		case -4:
+			return ((-1 + w * 2) * 0.5)⊹0
+		case 5:
+			return sinh(w)⊹0
+		case 6:
+			return cosh(w)⊹0
+		case 7:
+			return tanh(w)⊹0
+		case -5:
+			return asinh(w)⊹0
+		case -6:
+			return acosh(w)⊹0
+		case -7:
+			return atanh(w)⊹0
+		case 8:
+			return ((-1 - w * 2) * 0.5)⊹0
+		case -8:
+			return (-(-1 - w * 2) * 0.5)⊹0
+		case 9:
+			return ((w + +w) ÷ 2)⊹0
+		case 10:
+			return |w ⊹ 0
+		case 11:
+			return (w - +w) ÷ (0⊹2)
+		case -9:
+			return w⊹0
+		case -10:
+			return (+w)⊹0
+		case -11:
+			return **w × (0⊹1)
+		case 12:
+			return (⍟(×w)) ÷ (0⊹1)
+		case -12:
+			return **w × (0⊹1)
+		case 13:
+			return w⊹0
+		case 14:
+			return **w ⊹ 0
+		case 15:
+			return **w × (0⊹1)
+		case -13:
+			return w⊹0
+		case -14:
+			return ⍟w ⊹ 0
+		case -15:
+			return ⍟w × -(0⊹2)
+		default:
+			break
 	}
 	println("Invalid argument passed to Circle \(w)")
 	assert(false, "")
@@ -258,7 +258,7 @@ prefix operator ¿ {}
 
 /// Deal | Returns a vector of numbers a long randomly selected from ⍳w.  The returned array will
 /// always contain unique numbers.
-infix operator ¿ {}
+infix operator ¿ { associativity right }
 
 prefix public func ¿(w : UInt) -> Double {
 	return Double(arc4random()) | Double(w)
@@ -275,10 +275,18 @@ public func ¿(a : UInt, w : UInt) -> [Double] {
 //------------------//
 
 //prefix operator ⊥ {}
-//infix operator ⊥ { associativity right }
-//
-//prefix operator ⊤ {}
-//infix operator ⊤ { associativity right }
+infix operator ⊥ { associativity right }
+
+//public func ⊥(a : UInt, w : UInt) -> Double {
+//	let W = 1+(⌽(×\(⌽(a、1)))
+//}
+
+
+infix operator ⊤ { associativity right }
+
+public func ⊤(a : UInt, w : UInt) -> Double {
+	return Double(a % w)
+}
 
 //------------------//
 
@@ -348,7 +356,7 @@ public func ~<T : Hashable>(a : [T], w : [T]) -> [T] {
 		dict.updateValue(Void(), forKey: x)
 	}
 	return a.filter() {
-	   return dict.indexForKey($0) == nil
+		return dict.indexForKey($0) == nil
 	}
 }
 
@@ -465,12 +473,24 @@ infix operator ⊖ {}
 //    return (⌽(¨(a ⍉ w)))
 //}
 
+/// Cant | This function reverses the order of axes of its argument.
 prefix operator ⍉ {}
-infix operator ⍉ {}
 
-//public func ⍉<T>(w : [T]) -> [T] {
-//    //return (⌽(⍳0)){⍴⍴w)⍉w
-//}
+//infix operator ⍉ {}
+
+prefix public func ⍉<T>(w : [T]) -> [T] {
+	return w
+}
+
+prefix public func ⍉<T>(w : [[T]]) -> [[T]] {
+	var ar : [[T]] = [[]]
+	for i in 0...w[0].count {
+		for j in 0...w.count {
+			ar[i][j] = w[w.count - 1 - j][i];
+		}
+	}
+	return ar
+}
 
 
 prefix operator ↑ {}
@@ -575,6 +595,52 @@ prefix public func ⍴<T>(w : [[[[[T]]]]]) -> [Int] {
 
 // MARK: Miscellaneous
 
+/// Ravel | "Ravels" (that is, the antonym of unravel) a nested array in normal order.
+prefix operator 、{}
+
+/// Table | Cants a and w, concats them together, then cants the result again.
+infix operator 、{}
+
+prefix public func 、<T>(w : [[T]]) -> [T] {
+	var ar : [T] = []
+	for x in w {
+		ar += x
+	}
+	return ar
+}
+
+prefix public func 、<T>(w : [[[T]]]) -> [T] {
+	var ar : [T] = []
+	for x in w {
+		ar += 、x
+	}
+	return ar
+}
+
+prefix public func 、<T>(w : [[[[T]]]]) -> [T] {
+	var ar : [T] = []
+	for x in w {
+		ar += 、x
+	}
+	return ar
+}
+
+prefix public func 、<T>(w : [[[[[T]]]]]) -> [T] {
+	var ar : [T] = []
+	for x in w {
+		ar += 、x
+	}
+	return ar
+}
+
+public func 、<T>(a : [T], w : [T]) -> [T] {
+	return ⍉((⍉a)⍪(⍉w))
+}
+
+public func 、<T>(a : [[T]], w : [[T]]) -> [[T]] {
+	return ⍉((⍉a)⍪(⍉w))
+}
+
 //prefix operator ⍎ {}
 //infix operator ⍎ { associativity right }
 //
@@ -585,6 +651,10 @@ prefix operator ⍪ {}
 
 /// Over | Concatenates the major cells of a and w
 infix operator ⍪ {}
+
+//prefix public func ⍪<T>(w : [T]) -> [T] {
+//	return ،⍤¯1،⍤¯1 w
+//}
 
 public func ⍪<T>(a : [T], w : [T]) -> [T] {
 	var arr = a

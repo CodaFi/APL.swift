@@ -29,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		84A8549B19804E82000352BA /* Complex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Complex.swift; sourceTree = "<group>"; };
+		84BEBCFC199D6636008B03EC /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
+		84BEBCFE199D6670008B03EC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		84C36F7319806B5600F58523 /* Adverbs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adverbs.swift; sourceTree = "<group>"; };
 		84EA383E197472C90014CFF7 /* APL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EA3842197472C90014CFF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +65,8 @@
 		84EA3834197472C90014CFF7 = {
 			isa = PBXGroup;
 			children = (
+				84BEBCFE199D6670008B03EC /* Cocoa.framework */,
+				84BEBCFC199D6636008B03EC /* libobjc.dylib */,
 				84EA3840197472C90014CFF7 /* APL */,
 				84EA384D197472C90014CFF7 /* APLTests */,
 				84EA383F197472C90014CFF7 /* Products */,
@@ -346,6 +350,7 @@
 				INFOPLIST_FILE = APL/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -365,6 +370,7 @@
 				INFOPLIST_FILE = APL/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
