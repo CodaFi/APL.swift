@@ -19,44 +19,44 @@ public struct Complex {
     
 }
 
-operator infix ⊹ {}
+infix operator ⊹ {}
 
-@infix public func ⊹(a : Double, w : Double) -> Complex {
+public func ⊹(a : Double, w : Double) -> Complex {
     return Complex(real: a, imag: w)
 }
 
-@infix public func + (a : Complex, w : Complex) -> Complex {
+public func + (a : Complex, w : Complex) -> Complex {
     return Complex(real: a.real + w.real, imag: a.imag + w.imag)
 }
 
-@prefix public func - (w : Complex) -> Complex {
+prefix public func - (w : Complex) -> Complex {
     return Complex(real: -w.real, imag: -w.imag)
 }
 
-@infix public func - (a : Complex, w : Complex) -> Complex {
+public func - (a : Complex, w : Complex) -> Complex {
     return Complex(real: a.real - w.real, imag: a.imag - w.imag)
 }
 
-@infix public func × (a : Complex, w : Complex) -> Complex {
+public func × (a : Complex, w : Complex) -> Complex {
     return Complex(real: (a.real × w.real) - (a.imag × w.imag), imag: (a.real × w.imag) + (a.imag × w.real))
 }
 
-@infix public func ÷ (a : Complex, w : Complex) -> Complex {
+public func ÷ (a : Complex, w : Complex) -> Complex {
     return a × w.inverse
 }
 
-@infix public func + (a : Double, w : Complex) -> Complex {
+public func + (a : Double, w : Complex) -> Complex {
     return Complex(real: a + w.real, imag: w.imag)
 }
 
-@infix public func - (a : Double, w : Complex) -> Complex {
+public func - (a : Double, w : Complex) -> Complex {
     return Complex(real: a - w.real, imag: w.imag)
 }
 
-@infix public func × (a : Double, w : Complex) -> Complex {
+public func × (a : Double, w : Complex) -> Complex {
     return Complex(real: a × w.real, imag: a × w.imag)
 }
 
-@infix public func ÷ (a : Double, w : Complex) -> Complex {
+public func ÷ (a : Double, w : Complex) -> Complex {
     return a × w.inverse
 }

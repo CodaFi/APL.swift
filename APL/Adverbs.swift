@@ -10,12 +10,12 @@ import Foundation
 
 
 /// Swap | Applies w and a to a verb on the left.
-operator infix ⊂ {}
+infix operator ⊂ {}
 
-@infix public func ⊂<T, U>(f : U -> T, w : U) -> T {
+public func ⊂<T, U>(f : U -> T, w : U) -> T {
     return f(w)
 }
 
-@infix public func ⊂<T>(f : T -> T -> T, w : T) -> T {
+public func ⊂<T>(f : T -> T -> T, w : T) -> T {
     return f(w)(w)
 }
