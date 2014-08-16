@@ -11,23 +11,6 @@ import Foundation
 
 // MARK: Math
 
-//prefix operator + {} Defined by the STL
-//prefix operator - {} Defined by the STL
-
-/// Minus
-prefix operator - {}
-
-/// Trend | The trend of a number is its sign or zero.
-prefix operator × {}
-
-/// Times | Returns the result of e**(log(⍺) - log(1.0 / ⍵)), or the product of two numbers.
-infix operator × { associativity right }
-
-/// Per | Returns a result of (1 / ⍵)
-prefix operator ÷ {}
-
-/// Per | Returns the result of (⍺ / ⍵)
-infix operator ÷ { associativity right }
 
 prefix public func +(w : Double) -> Double {
 	return fabs(w)
@@ -57,17 +40,6 @@ public func ×(a : Double, w : Double) -> Double {
 	return exp(⍟a - ⍟(1.0 / w))
 }
 
-/// Floor | Gives the floor or integer part of w
-prefix operator ⌊ {}
-
-/// Minimum | Yields the lesser of a and w
-infix operator ⌊ { associativity right }
-
-/// Ceiling | Rounds upward, then yields the integer part of w
-prefix operator ⌈ {}
-
-/// Maximum | Yields the greater of a and w
-infix operator ⌈ { associativity right }
 
 prefix public func ⌊(w : Double) -> Double {
 	return floor(w)
@@ -85,13 +57,6 @@ public func ⌈(a : Double, w : Double) -> Double {
 	return (a > w) ? a : w
 }
 
-/// Size | Yields the size or "absolute value" for a real or complex argument.
-prefix operator | {}
-
-/// Residue | TODO: Relax definition from fmod to "tolerant" residue
-/// ⍺|⍵ ←→ ⍵-⍺×⌊s   if (⍺≠0)^(⌈s)≠⌊s←⍵÷⍺+⍺=0
-///     ←→ ⍵×⍺=0    otherwise
-infix operator | { associativity right }
 
 prefix public func |(w : Double) -> Double {
 	return fabs(w)
@@ -104,17 +69,6 @@ prefix public func |(w : Complex) -> Double {
 public func |(a : Double, w : Double) -> Double {
 	return fmod(a, w)
 }
-
-
-/// Factorial | Returns the product of the list of integers from 1 to w
-/// TODO: Extend to reals and complex numbers with gamma:
-///     Gamma(x) = (x - 1)! | x ∊ N
-///     Gamma(t) = Integral(0, Inf, (x**(t-1))× **-x, dx) | otherwise
-prefix operator ! {}
-
-/// Out of | Yields the number of ways of selecting a things from w.  Useful for producing
-/// binomial coefficients.
-infix operator ! { associativity right }
 
 prefix public func !(w : Int) -> Double {
 	var acc : Int = 1
@@ -133,17 +87,6 @@ public func !(a : [Int], w : Int) -> [Double] {
 	return a.map({$0 ! w})
 }
 
-/// Power | Returns the exponential of ⍵; that is, e ** ⍵
-prefix operator ** {}
-
-/// Power | Returns ⍺ ** ⍵
-infix operator ** { associativity right }
-
-/// Log | Returns the natural log of ⍵
-prefix operator ⍟ {}
-
-/// Log | Returns the log base ⍺ of ⍵
-infix operator ⍟ { associativity right }
 
 prefix public func **(w : Double) -> Double {
 	return exp(w)
@@ -160,21 +103,6 @@ prefix public func ⍟(w : Double) -> Double {
 public func ⍟(a : Double, w : Double) -> Double {
 	return **w ** ⍟a
 }
-
-/// Pi | Returns pi × w, where pi is the ratio of the circumference of a circle to its diameter.
-prefix operator ○ {}
-
-/// Circle | Given some constant k in the range [-15...15], produces several families of related
-/// functions.  Trigonometric for k∊1 2 3, hyperbolic for k∊5 6 7, pythagorean for k∊0 4 8, and
-/// complex for k∊9 10 11 12.  Negative cases correspond to the inverse of the corresponding
-/// positive operation such that ⍵≡k○(-k)○⍵ or ⍵≡(-k)○k○⍵ hold
-infix operator ○ { associativity right }
-
-/// Reverse | Reverses the order of a list
-prefix operator ⌽ {}
-
-/// Rotate | Cycles the elements of a list.
-infix operator ⌽ { associativity right }
 
 
 prefix public func ○(w : Double) -> Double {
@@ -253,13 +181,6 @@ public func ○(l : Int, w : Double) -> Complex {
 	return Complex()
 }
 
-/// Roll | Returns a random number from ⍳w
-prefix operator ¿ {}
-
-/// Deal | Returns a vector of numbers a long randomly selected from ⍳w.  The returned array will
-/// always contain unique numbers.
-infix operator ¿ { associativity right }
-
 prefix public func ¿(w : UInt) -> Double {
 	return Double(arc4random()) | Double(w)
 }
@@ -272,46 +193,13 @@ public func ¿(a : UInt, w : UInt) -> [Double] {
 	return Array<Double>(indices.keys)
 }
 
-//------------------//
-
-//prefix operator ⊥ {}
-infix operator ⊥ { associativity right }
-
-//public func ⊥(a : UInt, w : UInt) -> Double {
-//	let W = 1+(⌽(×\(⌽(a、1)))
-//}
-
-
-infix operator ⊤ { associativity right }
-
 public func ⊤(a : UInt, w : UInt) -> Double {
 	return Double(a % w)
 }
 
-//------------------//
-
-
-// MARK: Logic and Comparison
-
-//prefix operator < {}
-//infix operator < { associativity right }
-//
-//prefix operator ≤ {}
-//infix operator ≤ { associativity right }
-//
-//prefix operator > {}
-//infix operator > { associativity right }
-//
-//prefix operator ≥{}
-//infix operator ≥ { associativity right }
-
-//------------------//
-
-//prefix operator = {}
-//infix operator = { associativity right }
-
-prefix operator ≠ {}
-infix operator ≠ { associativity right }
+//public func ⊥(a : UInt, w : UInt) -> Double {
+//	let W = 1+(⌽(×\(⌽(a、1)))
+//}
 
 prefix public func ≠<T : Hashable>(w : [T]) -> [Int] {
 	var dict = Dictionary<T, Void>()
@@ -323,9 +211,6 @@ prefix public func ≠<T : Hashable>(w : [T]) -> [Int] {
 		return 1
 	}
 }
-
-/// Match | Returns whether the arguments match in shape, size, and boxing structure
-infix operator ≡ { associativity right }
 
 public func ≡<T : Equatable>(a : T, w : T) -> Bool {
 	return a == w 
@@ -344,12 +229,6 @@ public func ≡<T : Equatable>(a : [T], w : [T]) -> Bool {
 	return false
 }
 
-/// Not | Negates only boolean arguments
-//prefix operator ~ {}
-
-/// Less | Returns an array whose major cells are the major cells of ⍺ less the major cells of ⍵.
-infix operator ~ { associativity right }
-
 public func ~<T : Hashable>(a : [T], w : [T]) -> [T] {
 	var dict = Dictionary<T, Void>()
 	for x in w {
@@ -361,19 +240,6 @@ public func ~<T : Hashable>(a : [T], w : [T]) -> [T] {
 }
 
 
-/// And | Logical AND
-/// Least Common Multiple | The least common divisor of ⍺ and ⍵
-infix operator ∧ { associativity right }
-
-/// Or | Logical OR
-/// Greatest Common Multiple | The greatest common divisor or ⍺ and ⍵
-infix operator ∨ { associativity right }
-
-/// Nor | Logical NOR
-infix operator ⍱ { associativity right }
-
-/// Nand | Logical NAND
-infix operator ⍲ { associativity right }
 
 public func ∧(a : UInt, w : UInt) -> Double {
 	return Double(Double(w) / (a ∨ w)) ** Double(a)
@@ -408,19 +274,6 @@ public func ⍲(a : Bool, w : Bool) -> Bool {
 }
 
 // MARK: Selection and Set Operations
-
-/// Right | Identity
-prefix operator ⊢ {}
-
-/// Right | Yields the argument to its right. aka const
-infix operator ⊢ { associativity right }
-
-/// Left | Identity
-prefix operator ⊣ {}
-
-/// Left | Yields the argument to its left.  aka flip const
-infix operator ⊣ { associativity right }
-
 
 prefix public func ⊢<T>(w : T) -> T {
 	return w
@@ -462,21 +315,14 @@ public func ⌽<T>(a : Int, w : [T]) -> [T] {
 
 //------------------//
 
-prefix operator ⊖ {}
-infix operator ⊖ {}
-
-//public func ⊖<T>(w : [T]) -> [T] {
-//    return (⍉(⌽(⍉w)))
-//}
+/// Upset | Overturns w.
+public prefix func ⊖<T>(w : [T]) -> [T] {
+	return (⍉(⌽(⍉w)))
+}
 
 //public func ⊖<T>(a : [Int], w : [T]) -> [T] {
-//    return (⌽(¨(a ⍉ w)))
+//    return (⌽¨(⍉w))
 //}
-
-/// Cant | This function reverses the order of axes of its argument.
-prefix operator ⍉ {}
-
-//infix operator ⍉ {}
 
 prefix public func ⍉<T>(w : [T]) -> [T] {
 	return w
@@ -493,20 +339,8 @@ prefix public func ⍉<T>(w : [[T]]) -> [[T]] {
 }
 
 
-prefix operator ↑ {}
-infix operator ↑ { associativity right }
-
-prefix operator ↓ {}
-infix operator ↓ { associativity right }
-
-infix operator ⌿ {}
-
-
 //------------------//
 
-prefix public func ↑<T : Hashable>(w : [T]) -> [T] {
-	return (≠w) ⌿ w
-}
 
 public func ⌿<T>(a : [Int], w : [T]) -> [T] {
 	var arr = Array<T>()
@@ -534,36 +368,25 @@ public func ⌿<T>(a : [Int], w : T) -> [T] {
 	return Array<T>(count: a.reduce(0, combine:(+)), repeatedValue: w)
 }
 
-//------------------//
-
-prefix operator ∊ {}
-infix operator ∊ { associativity right }
-
-prefix operator ⍷ {}
-infix operator ⍷ { associativity right }
-
-//------------------//
-
-
-prefix operator ⍳ {}
-infix operator ⍳ { associativity right }
 
 prefix public func ⍳(w : Int) -> [Int] {
 	return Array<Int>((0..<w))
 }
 
-//public func ⍳<T>(a : [T], w : T) -> [T] {
-//    return +/ ∧\a∘.(≠w)
+prefix public func ⍳(w : Double) -> [Double] {
+	return Array<Double>(stride(from: 0.0, to: w, by: 1.0))
+}
+
+
+//public func ⍳<T : Hashable>(a : [T], w : [T]) -> T {
+//	return ((+) / ((∧⧵(≠w))))
 //}
 
-//infix operator ⍸ { associativity right }
-//
+
 //public func ⍸<T>(a : [T], w : [T]) {
 //
 //}
 
-prefix operator ⍴ {}
-infix operator ⍴ {}
 
 prefix public func ⍴<T>(w : [T]) -> [Int] {
 	return [w.count]
@@ -594,12 +417,6 @@ prefix public func ⍴<T>(w : [[[[[T]]]]]) -> [Int] {
 }
 
 // MARK: Miscellaneous
-
-/// Ravel | "Ravels" (that is, the antonym of unravel) a nested array in normal order.
-prefix operator 、{}
-
-/// Table | Cants a and w, concats them together, then cants the result again.
-infix operator 、{}
 
 prefix public func 、<T>(w : [[T]]) -> [T] {
 	var ar : [T] = []
@@ -640,17 +457,6 @@ public func 、<T>(a : [T], w : [T]) -> [T] {
 public func 、<T>(a : [[T]], w : [[T]]) -> [[T]] {
 	return ⍉((⍉a)⍪(⍉w))
 }
-
-//prefix operator ⍎ {}
-//infix operator ⍎ { associativity right }
-//
-//prefix operator ⍕ {}
-//infix operator ⍕ { associativity right }
-
-prefix operator ⍪ {}
-
-/// Over | Concatenates the major cells of a and w
-infix operator ⍪ {}
 
 //prefix public func ⍪<T>(w : [T]) -> [T] {
 //	return ،⍤¯1،⍤¯1 w
