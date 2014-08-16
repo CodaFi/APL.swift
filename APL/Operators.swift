@@ -28,16 +28,16 @@ prefix operator ÷ {}
 /// Per | Returns the result of (⍺ / ⍵)
 infix operator ÷ { associativity right }
 
-/// Floor | Gives the floor or integer part of w
+/// Floor | Gives the floor or integer part of ⍵
 prefix operator ⌊ {}
 
-/// Minimum | Yields the lesser of a and w
+/// Minimum | Yields the lesser of a and ⍵
 infix operator ⌊ { associativity right }
 
-/// Ceiling | Rounds upward, then yields the integer part of w
+/// Ceiling | Rounds upward, then yields the integer part of ⍵
 prefix operator ⌈ {}
 
-/// Maximum | Yields the greater of a and w
+/// Maximum | Yields the greater of ⍺ and ⍵
 infix operator ⌈ { associativity right }
 
 /// Size | Yields the size or "absolute value" for a real or complex argument.
@@ -48,13 +48,13 @@ prefix operator | {}
 ///     ←→ ⍵×⍺=0    otherwise
 infix operator | { associativity right }
 
-/// Factorial | Returns the product of the list of integers from 1 to w
+/// Factorial | Returns the product of the list of integers from 1 to ⍵
 /// TODO: Extend to reals and complex numbers with gamma:
 ///     Gamma(x) = (x - 1)! | x ∊ N
 ///     Gamma(t) = Integral(0, Inf, (x**(t-1))× **-x, dx) | otherwise
 prefix operator ! {}
 
-/// Out of | Yields the number of ways of selecting a things from w.  Useful for producing
+/// Out of | Yields the number of ways of selecting ⍺ things from ⍵.  Useful for producing
 /// binomial coefficients.
 infix operator ! { associativity right }
 
@@ -70,7 +70,7 @@ prefix operator ⍟ {}
 /// Log | Returns the log base ⍺ of ⍵
 infix operator ⍟ { associativity right }
 
-/// Pi | Returns pi × w, where pi is the ratio of the circumference of a circle to its diameter.
+/// Pi | Returns pi × ⍵, where pi is the ratio of the circumference of a circle to its diameter.
 prefix operator ○ {}
 
 /// Circle | Given some constant k in the range [-15...15], produces several families of related
@@ -88,7 +88,7 @@ infix operator ⌽ { associativity right }
 /// Roll | Returns a random number from ⍳w
 prefix operator ¿ {}
 
-/// Deal | Returns a vector of numbers a long randomly selected from ⍳w.  The returned array will
+/// Deal | Returns a vector of numbers ⍺ long randomly selected from ⍳w.  The returned array will
 /// always contain unique numbers.
 infix operator ¿ { associativity right }
 
@@ -200,7 +200,7 @@ infix operator ⍴ {}
 /// Ravel | "Ravels" (that is, the antonym of unravel) a nested array in normal order.
 prefix operator 、{}
 
-/// Table | Cants a and w, concats them together, then cants the result again.
+/// Table | Cants ⍺ and ⍵, concats them together, then cants the result again.
 infix operator 、{}
 
 //prefix operator ⍎ {}
@@ -211,6 +211,6 @@ infix operator 、{}
 
 prefix operator ⍪ {}
 
-/// Over | Concatenates the major cells of a and w
+/// Over | Concatenates the major cells of ⍺ and ⍵
 infix operator ⍪ {}
 
